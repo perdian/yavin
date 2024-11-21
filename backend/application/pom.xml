@@ -56,7 +56,7 @@
                                 registry. This allows other artifacts (e.g. the development artifact)
                                 to use the results as a regular dependency
                             -->
-                            <classifier>springboot</classifier>
+                            <classifier>complete</classifier>
                         </configuration>
                     </execution>
                 </executions>
