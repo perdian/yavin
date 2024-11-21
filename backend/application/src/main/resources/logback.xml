@@ -6,6 +6,7 @@
         </encoder>
     </appender>
 
+    <logger name="com.tngtech.archunit" level="WARN" />
     <logger name="com.zaxxer.hikari" level="WARN" />
     <logger name="org.apache.catalina.core" level="WARN" />
     <logger name="org.apache.coyote" level="WARN" />
