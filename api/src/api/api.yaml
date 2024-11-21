@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Example API
+  description: Example API
+paths:
+  /dummy:
+    get:
+      operationId: dummyGet
+      description: Dummy operation
+      requestBody:
+        content:
+          "*":
+            schema:
+              $ref: "#/components/schemas/DummyRequest"
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            "X-Test":
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DummyResponse"
+
+components:
+  schemas:
+    DummyEnum:
+      type: string
+      enum: [A, B, C]
+      x-enum-varnames: ["A_VALUE", "B_VALUE", "C_VALUE"]
+    DummyRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        password:
+          type: string
+          minLength: 5
+        passwordConfirmation:
+          type: string
+          minLength: 5
+    DummyResponse:
+      type: object
+      properties:
+        message:
+          type: string

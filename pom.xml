@@ -8,12 +8,16 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api</module>
         <module>backend</module>
         <module>frontend</module>
     </modules>
 
     <properties>
-        <buildNumber>UNKNOWN</buildNumber>
+        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <java.version>23</java.version>
+        <spring-boot.version>3.3.5</spring-boot.version>
+        <springdoc.version>2.5.0</springdoc.version>
     </properties>
 
     <build>
@@ -25,7 +29,7 @@
                 <executions>
                     <execution>
                         <id>create</id>
-                        <phase>validate</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>create</goal>
                         </goals>
@@ -36,6 +40,46 @@
                             <ignoreEmptyScmUrl>true</ignoreEmptyScmUrl>
                             <shortRevisionLength>8</shortRevisionLength>
                             <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.9</version>
+                                </requireMavenVersion>
+                                <banDuplicatePomDependencyVersions />
+                                <reactorModuleConvergence />
+                            </rules>
                         </configuration>
                     </execution>
                 </executions>
